@@ -13,7 +13,7 @@ nginx:
   replicaCount: 1
   image:
     repository: frappe/erpnext-nginx
-    tag: v14.8.0
+    tag: v14.7.0
     pullPolicy: IfNotPresent
   # config: |
   #   # custom template /etc/nginx/templates/default.conf.template
@@ -47,7 +47,7 @@ nginx:
 worker:
   image:
     repository: frappe/erpnext-worker
-    tag: v14.8.0
+    tag: v14.7.0
     pullPolicy: IfNotPresent
 
   gunicorn:
@@ -204,7 +204,7 @@ socketio:
     periodSeconds: 10
   image:
     repository: frappe/frappe-socketio
-    tag: v14.16.0
+    tag: v14.15.0
     pullPolicy: IfNotPresent
   resources: {}
   nodeSelector: {}
@@ -220,14 +220,14 @@ socketio:
 persistence:
   worker:
     enabled: true
-    # existingClaim: ""
-    size: 8Gi
+    existingClaim: "testpvc"
+    size: 5Gi
     # storageClass: "nfs"
   logs:
     # Container based log search and analytics stack recommended
     enabled: false
     # existingClaim: ""
-    size: 8Gi
+    size: 3Gi
     # storageClass: "nfs"
 
 # Ingress
@@ -251,7 +251,7 @@ ingress:
 
 jobs:
   volumePermissions:
-    enabled: false
+    enabled: true
     backoffLimit: 0
     resources: {}
     nodeSelector: {}
@@ -268,10 +268,10 @@ jobs:
     affinity: {}
 
   createSite:
-    enabled: false
-    forceCreate: false
+    enabled: true
+    forceCreate: true
     siteName: "erp.cluster.local"
-    adminPassword: "changeit"
+    adminPassword: "admin"
     installApps:
     - "erpnext"
     dbType: "mariadb"
@@ -382,10 +382,10 @@ mariadb:
   # https://github.com/bitnami/charts/tree/master/bitnami/mariadb
   enabled: true
   auth:
-    rootPassword: "changeit"
+    rootPassword: "root"
     username: "erpnext"
-    password: "changeit"
-    replicationPassword: "changeit"
+    password: "erpnext"
+    replicationPasswork: "erpnext"
   primary:
     service:
       ports:

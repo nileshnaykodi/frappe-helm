@@ -1,48 +1,31 @@
 apiVersion: v2
-name: erpnext
+appVersion: v14.7.0
+dependencies:
+- alias: redis-cache
+  condition: redis-cache.enabled
+  name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.4.0
+- alias: redis-queue
+  condition: redis-queue.enabled
+  name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.4.0
+- alias: redis-socketio
+  condition: redis-socketio.enabled
+  name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.4.0
+- condition: mariadb.enabled
+  name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.3.3
+- condition: postgresql.enabled
+  name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.0.3
 description: Kubernetes Helm Chart for the latest stable ERPNext branch
 icon: https://raw.githubusercontent.com/frappe/design/master/logos/logo-2018/erpnext-logo-blue.svg
-
-# A chart can be either an 'application' or a 'library' chart.
-#
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-#
-# Library charts provide useful utilities or functions for the chart developer. They're included as
-# a dependency of application charts to inject those utilities and functions into the rendering
-# pipeline. Library charts do not define any templates and therefore cannot be deployed.
+name: erpnext
 type: application
-
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-version: 5.0.42
-
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application.
-appVersion: v14.8.0
-
-# Dependencies if not installed Locally
-dependencies:
-- name: redis
-  condition: redis-cache.enabled
-  alias: redis-cache
-  version: "16.4.0"
-  repository: https://charts.bitnami.com/bitnami
-- name: redis
-  condition: redis-queue.enabled
-  alias: redis-queue
-  version: "16.4.0"
-  repository: https://charts.bitnami.com/bitnami
-- name: redis
-  condition: redis-socketio.enabled
-  alias: redis-socketio
-  version: "16.4.0"
-  repository: https://charts.bitnami.com/bitnami
-- name: mariadb
-  condition: mariadb.enabled
-  version: "10.3.3"
-  repository: https://charts.bitnami.com/bitnami
-- name: postgresql
-  condition: postgresql.enabled
-  version: "11.0.3"
-  repository: https://charts.bitnami.com/bitnami
+version: 5.0.40
