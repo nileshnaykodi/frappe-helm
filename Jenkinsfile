@@ -5,15 +5,12 @@ pipeline {
     kubernetes {
 //    yamlFile 'pod.yaml'
       yaml '''
-	kind: pod
-	metadata:
- 	  labels:
-	    name: helm
-	spec:
- 	  containers:
-  	    - name: helm
-    	      image: alpine/k8s
-	'''
+        kind: pod
+        spec:
+          containers:
+            - name: helm
+              image: alpine/k8s
+        '''
     }	
   }
  
